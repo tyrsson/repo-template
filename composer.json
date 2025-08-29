@@ -1,14 +1,12 @@
 {
-    "name": "/",
+    "name": "tyrsson/repo-template",
     "description": "",
     "license": "BSD-3-Clause",
     "keywords": [
     ],
-    "homepage": "",
     "support": {
-        "issues": "",
-        "source": "",
-        "forum": ""
+        "issues": "https://github.com/tyrsson/repo-template/issues",
+        "source": "https://github.com/tyrsson/repo-template"
     },
     "minimum-stability": "dev",
     "prefer-stable": true,
@@ -42,13 +40,13 @@
     },
     "autoload": {
         "psr-4": {
-            "\\\\": "src/"
+            "Acme\\Foo\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "\\\\": "test/unit/",
-            "\\\\": "test/integration/"
+            "AcmeTest\\Foo\\": "test/unit/",
+            "AcmeTestIntegration\\Foo\\": "test/integration/"
         }
     },
     "scripts": {
