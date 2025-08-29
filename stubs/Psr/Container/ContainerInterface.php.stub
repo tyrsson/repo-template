@@ -1,0 +1,20 @@
+<?php
+
+declare(strict_types=1);
+
+namespace Psr\Container;
+
+/**
+ * @phpstan-template T of object
+ */
+interface ContainerInterface
+{
+    /**
+     * @phpstan-param string|class-string<T> $id
+     * @phpstan-return ($id is class-string ? T : mixed)
+     */
+    public function get(string $id): mixed;
+
+    /** @phpstan-param string|class-string $id */
+    public function has(string $id): bool;
+}

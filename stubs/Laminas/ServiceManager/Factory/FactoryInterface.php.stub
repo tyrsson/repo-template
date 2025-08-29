@@ -7,8 +7,7 @@ namespace Laminas\ServiceManager\Factory;
 use Psr\Container\ContainerInterface;
 
 /**
- * PHPStan stub for Laminas\ServiceManager\Factory\FactoryInterface
- * This is a type alias to help PHPStan understand the interface in the PhpCmd\CmdBus namespace context.
+ * @phpstan-template T of object
  */
 interface FactoryInterface
 {
@@ -16,6 +15,8 @@ interface FactoryInterface
      * Create a service instance
      *
      * @param array<mixed>|null $options
+     * @phpstan-param string|class-string<T> $requestedName
+     * @phpstan-return ($requestedName is class-string ? T : mixed)
      */
     public function __invoke(ContainerInterface $container, string $requestedName, ?array $options = null): mixed;
 }
