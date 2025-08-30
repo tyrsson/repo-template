@@ -6,5 +6,4 @@ namespace AcmeTest\Foo;
 
 final class TestAsset
 {
-
 }

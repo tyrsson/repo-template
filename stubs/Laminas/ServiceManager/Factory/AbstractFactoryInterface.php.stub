@@ -6,14 +6,12 @@ namespace Laminas\ServiceManager\Factory;
 
 use Psr\Container\ContainerInterface;
 
-/**
- * @phpstan-template T of object
- */
 interface AbstractFactoryInterface extends FactoryInterface
 {
     /**
      * Can the factory create an instance for the service?
-     * @phpstan-param string|class-string<T> $requestedName
+     *
+     * @phpstan-param string|class-string $requestedName
      */
     public function canCreate(ContainerInterface $container, string $requestedName): bool;
 }

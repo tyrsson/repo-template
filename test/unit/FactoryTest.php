@@ -4,19 +4,23 @@ declare(strict_types=1);
 
 namespace AcmeTest\Foo;
 
+use Laminas\ServiceManager\Factory\FactoryInterface;
 use PHPUnit\Framework\TestCase;
 use Psr\Container\ContainerInterface;
 
 final class FactoryTest extends TestCase
 {
-    private $factory;
+    private FactoryInterface $factory;
 
     protected function setUp(): void
     {
         parent::setUp();
-        $this->factory = new class implements \Laminas\ServiceManager\Factory\FactoryInterface {
-            public function __invoke(ContainerInterface $container, string $requestedName, array $options = null): mixed
-            {
+        $this->factory = new class implements FactoryInterface {
+            public function __invoke(
+                ContainerInterface $container,
+                string $requestedName,
+                ?array $options = null
+            ): mixed {
                 return new $requestedName();
             }
         };
@@ -25,7 +29,7 @@ final class FactoryTest extends TestCase
     public function testFactoryCreatesInstance(): void
     {
         $container = $this->createMock(ContainerInterface::class);
-        $instance = ($this->factory)($container, TestAsset::class);
+        $instance  = ($this->factory)($container, TestAsset::class);
         $this->assertInstanceOf(TestAsset::class, $instance);
     }
 }

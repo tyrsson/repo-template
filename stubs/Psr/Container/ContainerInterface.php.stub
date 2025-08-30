@@ -4,14 +4,11 @@ declare(strict_types=1);
 
 namespace Psr\Container;
 
-/**
- * @phpstan-template T of object
- */
 interface ContainerInterface
 {
     /**
-     * @phpstan-param string|class-string<T> $id
-     * @phpstan-return ($id is class-string ? T : mixed)
+     * @phpstan-template T of object
+     * @phpstan-return ($id is class-string<T> ? T : mixed)
      */
     public function get(string $id): mixed;
 
