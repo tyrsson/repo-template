@@ -1,13 +1,20 @@
 {
     "name": "tyrsson/repo-template",
-    "description": "",
+    "description": "A template repository for new PHP projects",
     "license": "BSD-3-Clause",
     "keywords": [
+        "template",
+        "repository",
+        "php"
     ],
-    "support": {
-        "issues": "https://github.com/tyrsson/repo-template/issues",
-        "source": "https://github.com/tyrsson/repo-template"
-    },
+    "authors": [
+        {
+            "name": "Joey (aka Tyrsson) Smith",
+            "email": "jsmith@webinertia.net",
+            "homepage": "https://github.com/tyrsson/repo-template/discussions",
+            "role": "Developer"
+        }
+    ],
     "minimum-stability": "dev",
     "prefer-stable": true,
     "config": {
@@ -16,55 +23,46 @@
             "php": "8.2.99"
         },
         "allow-plugins": {
-            "dealerdirect/phpcodesniffer-composer-installer": true,
-            "laminas/laminas-component-installer": true
-        }
-    },
-    "extra": {
-        "laminas": {
-            "config-provider": ""
+            "composer/package-versions-deprecated": true
         }
     },
     "require": {
-        "php": "~8.2.0 || ~8.3.0 || ~8.4.0",
-        "beberlei/assert": "^3.3",
-        "psr/container": "^2.0"
+        "php": "~8.2.0 || ~8.3.0 || ~8.4.0 || ~8.5.0"
     },
     "require-dev": {
-        "laminas/laminas-coding-standard": "^3.0.1",
-        "laminas/laminas-servicemanager": "^4.4",
         "phpstan/phpstan": "^2.1",
         "phpstan/phpstan-phpunit": "^2.0",
-        "phpunit/phpunit": "^11.5.0"
-    },
-    "suggest": {
-        "laminas/laminas-servicemanager": "Laminas\\ServiceManager component"
+        "phpunit/phpunit": "^11.5.42",
+        "roave/security-advisories": "dev-master",
+        "webware/coding-standard": "^0.1.0"
     },
     "autoload": {
         "psr-4": {
-            "Acme\\Foo\\": "src/"
+            "Tyrsson\\RepoTemplate\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "AcmeTest\\Foo\\": "test/unit/",
-            "AcmeTestIntegration\\Foo\\": "test/integration/"
+            "TyrssonIntegrationTest\\RepoTemplate\\": "test/integration/",
+            "TyrssonTestAsset\\RepoTemplate\\": "test/asset/",
+            "TyrssonTest\\RepoTemplate\\": "test/unit/"
         }
     },
     "scripts": {
         "check": [
             "@cs-check",
-            "@static-analysis",
+            "@sa",
             "@test",
             "@test-integration"
         ],
-        "cs-check": "phpcs",
-        "cs-fix": "phpcbf",
+        "cs-check": "vendor/bin/php-cs-fixer check -v --show-progress=dots --stop-on-violation",
+        "cs-fix": "vendor/bin/php-cs-fixer fix",
         "test": "phpunit --colors=always --testsuite \"unit test\"",
         "test-coverage": "phpunit --colors=always --coverage-clover clover.xml",
         "test-integration": "phpunit --colors=always --testsuite \"integration test\"",
-        "static-analysis": "vendor/bin/phpstan analyse",
-        "sa-update-baseline": "vendor/bin/phpstan analyse --generate-baseline",
+        "sa": "vendor/bin/phpstan analyse --memory-limit=256M",
+        "sa-gen-baseline": "vendor/bin/phpstan analyse --memory-limit=256M --generate-baseline",
+        "sa-verbose": "vendor/bin/phpstan analyse --memory-limit=256M -vv",
         "upload-coverage": "coveralls -v"
     }
 }
